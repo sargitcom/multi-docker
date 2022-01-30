@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t kamil/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t kamilpietrzkiewiczcom/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true kamil/react-test npm test
+  - docker run -e CI=true kamilpietrzkiewiczcom/react-test npm test
 
 after_success:
-  - docker build -t kamil/multi-client ./client
-  - docker build -t kamil/multi-nginx ./nginx
-  - docker build -t kamil/multi-server ./server
-  - docker build -t kamil/multi-worker ./worker
+  - docker build -t kamilpietrzkiewiczcom/multi-client ./client
+  - docker build -t kamilpietrzkiewiczcom/multi-nginx ./nginx
+  - docker build -t kamilpietrzkiewiczcom/multi-server ./server
+  - docker build -t kamilpietrzkiewiczcom/multi-worker ./worker
   # log in to docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push images do docker hub
-  - docker push kamil/multi-client
-  - docker push kamil/multi-nginx
-  - docker push kamil/multi-server
-  - docker push kamil/multi-worker
+  - docker push kamilpietrzkiewiczcom/multi-client
+  - docker push kamilpietrzkiewiczcom/multi-nginx
+  - docker push kamilpietrzkiewiczcom/multi-server
+  - docker push kamilpietrzkiewiczcom/multi-worker
